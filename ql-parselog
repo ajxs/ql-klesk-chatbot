@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ln -s c:/Users/no/AppData/LocalLow/id\ Software/quakelive/home/baseq3/ qlcfg
+tail -f -n 0 qlcfg/qconsole.log | ./ql-parser.pl 
+
