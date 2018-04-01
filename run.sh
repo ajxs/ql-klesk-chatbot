@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # main program args, edit these.
-BASEQ3_DIR="C:/Program Files (x86)/Steam/steamapps/common/Quake Live/76561198161852807/baseq3"
+BASEQ3_DIR="C:/Program Files (x86)/Steam/steamapps/common/Quake Live/76561198827372787/baseq3"
 PLAYER_NAME="Klesk"
 
 # Ensure existence of target files.

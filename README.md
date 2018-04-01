@@ -1,13 +1,23 @@
-# QL-log-parser
-Script for real time parsing of Quake Live console logs
+# ql-klesk-chatbot
+A script to allow a Quake live player to imitate the proper dynamic bot-chatter of Quake 3's Klesk bot in-game.
 
-This script was created by myself and CaptainTaichou, with the intention to allow a player to simulate the idiosyncratic bot chatter of the Quake3 bot 'Klesk' in Quake Live. The script functions by 'tailing' the qconsole.log file and piping each line as it is written to the ql-parselog.pl script for parsing. Since Quake Live can't be run in Linux anymore, you'll probably need to run this in Cygwin, unless of course you can find another way to pipe lines to the parser. This isn't the only way to accomplish this, and possibly not even the most novel, but you're free to figure out a more sublime solution on your own.
-You can obviously edit this script to fulfill whatever wild functionality you can think of. It's capable of much more than just imitating the klesk bot, but since neither of the creators play Quake anymore we have no plans to further develop the idea.
-And no, this won't get you banned. We notified Syncerror about it, and he didn't really seem concerned. ( He didn't even reply in fact. )
+## About
+This script was created back in 2014 by CaptainTaichou and myself, with the intention of allowing a Quake Live player to imitate the idiosyncratic bot chatter of the Quake3 bot 'Klesk'. The script functions by 'tailing' the qconsole.log file and piping each line to STDIN of the klesk.pl script, which in turn parses the console output to create the appropriate response lines in a series of .cfg files which can be executed in-game.
+The script allows the user to insult or praise the last player to kill the user, taunt the user's last victim, or insult the last talking player. The script includes all the relevant Klesk insults from the original Quake 3.
 
-##How to run the script
-To run the script, first move the cfg files to your home/baseq3 directory. Then modify relevant lines in the ql-parselog bash script and the ql-parser.pl script to correctly point to your baseq3 directory. You'll also need to modify the relevant line in the ql-parser.pl file to reflect your player name, it will need this information to correctly interpret relevant lines.
-You'll need to put 'seta logfile "3"' in your config file, this will force QL to pipe all console output to the qconsole.log file in your baseq3 directory. 
-The ql-parselog bash script will create a symbolic link from your baseq3 directory to the file 'qlcfg', this will be used by the scripts to easily access the files within your baseq3 dir. 
-To run the script, just run the bash script with ./ql-parselog in your cygwin shell.
-To operate the script in game, simply bind keys to exec the cfg files provided. These will be continually updated as the script parses input.
+Since Quake Live can't be run in Linux anymore, you'll need some form of terminal emulator like Cygwin. Unless of course you can find a native Windows way to pipe lines to the parser. I suspect this is possible with Powershell, but at the time of writing I have not attempted this.
+This kind of script is capable of much more than simply imitating Klesk, but we'll leave that functionality up to you to explore!
+And no, this won't get you banned.
+
+## How to run the script
+
+Firstly you'll need to alter the `run.sh` bash script to point to your steam client's `baseq3` folder, as well as specify the username you'll be playing as. ( More than likely this will be 'Klesk' )
+When run, the script will copy `klesk.cfg` to your `baseq3` folder if it is not already present, this file sets the correct logging level, as well as sets up a few basic binds. Feel free to alter these to suit your config. You will need to execute this script in the console using `exec klesk` before it will be active.
+
+The resulting binds are:
+`exec klesk-insult` - Insult the last person to kill you.
+`exec klesk-insult-talker` - Insult the last person to talk.
+`exec klesk-praise` - Praise the last person to kill you.
+`exec klesk-taunt` - Taunt the last person you killed.
+
+glhf!

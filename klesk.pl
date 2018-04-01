@@ -1,5 +1,36 @@
 #!/bin/perl
 
+=head1 NAME
+
+ql-klesk-chatbot
+
+=head1 SYNOPSIS
+
+	BASEQ3_DIR="C:/Program Files (x86)/Steam/steamapps/common/Quake Live/76561198827372787/baseq3"
+	PLAYER_NAME="Klesk"
+	tail -f -n 0 "${BASEQ3_DIR}/qconsole.log"  | ./klesk.pl --dir "${BASEQ3_DIR}" --name "${PLAYER_NAME}"
+
+=head1 DESCRIPTION
+
+Parses Quake Live console output to produce .cfg files suitable for imitating the Q3 bot Klesk's bot-chatter.
+
+=head1 AUTHORS
+
+=over 1
+
+=item
+	Anthony - L<https://github.com/ajxs/>
+
+=item
+	CaptainTaichou - L<http://http://www.esreality.com/?a=users&user_id=39953/>
+
+=back
+
+=head1 METHODS
+
+=cut
+
+
 use strict;
 use warnings;
 use Getopt::Long;
@@ -127,6 +158,22 @@ my @insult_array_kill = ("My egglings in you hatch, $target_name_replace_string.
 	);
 
 
+############################################################
+=over 1
+
+=item extract_victim_name()
+
+Extracts the victim name, if applicable, from the line piped from STDIN
+
+Input: $line
+
+Output: ($victim_name, $victim_rail_status, $victim_gaunt_status, $victim_bfg_status);
+
+=back
+
+=cut
+
+############################################################
 sub extract_victim_name {
 	my ( $line ) = @_;
 	my $victim_name = '';
@@ -165,6 +212,22 @@ sub extract_victim_name {
 }
 
 
+############################################################
+=over 1
+
+=item extract_enemy_name()
+
+Extracts the enemy name, if applicable, from the line piped from STDIN
+
+Input: $line
+
+Output: ($enemy_name, $enemy_rail_status, $enemy_gaunt_status, $enemy_bfg_status);
+
+=back
+
+=cut
+
+############################################################
 sub extract_enemy_name {
 	my ( $line ) = @_;
 	my $enemy_name = '';
